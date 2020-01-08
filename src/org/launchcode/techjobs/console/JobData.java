@@ -7,10 +7,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -54,23 +51,19 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         HashMap<String, String> searchedJob = new HashMap<>();
-        boolean jobMatches;
+        boolean jobMatches = false;
 
         for (HashMap<String, String> jobEntry : allJobs) {
-            jobMatches = false;
-            for (Map.Entry<String, String> entry : jobEntry.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-                searchedJob.put(key, value);
+            Collection<String> values = jobEntry.values();
+            for (String value : values) {
                 if (value.equals(searchTerm)) {
                     jobMatches = true;
                 }
             }
             if (jobMatches) {
-                jobs.add(searchedJob);
-                System.out.println(searchedJob);
-                searchedJob.clear();
+                jobs.add(jobEntry);
             }
+            jobMatches = false;
         }
         return jobs;
     }
