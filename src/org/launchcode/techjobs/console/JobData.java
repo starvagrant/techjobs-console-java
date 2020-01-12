@@ -56,7 +56,7 @@ public class JobData {
         for (HashMap<String, String> jobEntry : allJobs) {
             Collection<String> values = jobEntry.values();
             for (String value : values) {
-                if (value.equals(searchTerm)) {
+                if (value.toLowerCase().equals(searchTerm.toLowerCase())) {
                     jobMatches = true;
                 }
             }
@@ -86,7 +86,7 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(column);
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
