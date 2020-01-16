@@ -56,7 +56,7 @@ public class JobData {
         for (HashMap<String, String> jobEntry : allJobs) {
             Collection<String> values = jobEntry.values();
             for (String value : values) {
-                if (value.toLowerCase().equals(searchTerm.toLowerCase())) {
+                if (value.toLowerCase().contains(searchTerm.toLowerCase())) {
                     jobMatches = true;
                 }
             }
